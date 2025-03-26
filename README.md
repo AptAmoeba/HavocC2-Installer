@@ -18,8 +18,8 @@ Until they patch the Apt Package of Havoc to ship without issues, this script sh
 
 ## Usage
 Pull the .sh file and do the following:
-- #-$ sudo chmod +x ./HavocHelper.sh
-- sudo ./HavocHelper.sh
+- #~$ sudo chmod +x ./HavocHelper.sh
+- #~$ sudo ./HavocHelper.sh
 
 &nbsp;
 
