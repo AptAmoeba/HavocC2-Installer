@@ -5,7 +5,7 @@ Auto-installs Havoc C2's Dev branch (the most up-to-date Havoc version) &amp; ha
 
 ## Why Use This Script?
 This script serves as a fire-and-forget approach to:
-- Dev Branch installation
+- Dev Branch installation (Most updated/patched Havoc version)
 - Automatic Building
 - Adding the Havoc binary to PATH for easier invocation (no more "./havoc")
 
