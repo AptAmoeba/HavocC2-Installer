@@ -41,36 +41,41 @@ echo ""
 #Pulling Havoc's Dev branch into Opt
 echo -e "${GREEN}[+]${NOCOLOR} Cloning Havoc's DEV Branch into /opt..."
 sleep 1
-sudo git clone -b dev https://github.com/HavocFramework/Havoc.git /opt
+cd /opt
+sudo git clone -b dev https://github.com/HavocFramework/Havoc.git
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Preparing builds..."
 sleep 2
 cd /opt/Havoc/teamserver
-go mod download golang.org/x/sys
+sudo go mod download golang.org/x/sys
 if [ $? -ne 0 ]; then
 	echo ""
 	echo -e "${RED}[-]${NOCOLOR} go mod download of golang.org/x/sys failed."
 	exit 1
-go mod download github.com/ugorji/go
+fi
+sudo go mod download github.com/ugorji/go
 if [ $? -ne 0 ]; then
 	echo ""
 	echo -e "${RED}[-]${NOCOLOR} go mod download of github.com/ugorji/go failed."
 	exit 1
+fi
 cd ..
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Building Havoc TeamServer..."
-make ts-build
+sudo make ts-build
 if [ $? -ne 0 ]; then
 	echo ""
 	echo -e "${RED}[-]${NOCOLOR} TeamServer Build failed. See error output for more info."
 	exit 1
+fi
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Building Havoc Client..."
-make client-build
+sudo make client-build
 if [ $? -ne 0 ]; then
 	echo ""
 	echo -e "${RED}[-]${NOCOLOR} Client Build failed. See error output for more info."
 	exit 1
+fi
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Identifying Shell..."
 if [[ $SHELL == "*/zsh" ]]; then
