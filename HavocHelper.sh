@@ -24,7 +24,7 @@ if [ "$EUID" -eq 0 ]; then
 fi
 #--- Root check
 echo ""
-echo -e "${GREEN}[+]${NOCOLOR} Preliminary Update/Upgrade..."
+echo -e "${GREEN}[+]${NOCOLOR} Preliminary system Update/Upgrade."
 sleep 2
 sudo apt update && sudo apt upgrade -y
 # Validate install success:
@@ -46,7 +46,7 @@ sudo git clone -b dev https://github.com/HavocFramework/Havoc.git
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Preparing builds..."
 sleep 2
-cd /opt/Havoc/teamserver
+cd Havoc/teamserver
 sudo go mod download golang.org/x/sys
 if [ $? -ne 0 ]; then
 	echo ""
@@ -62,6 +62,9 @@ fi
 cd ..
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Building Havoc TeamServer..."
+echo -e "${GREEN}[+]${NOCOLOR}This will take a little while and it'll potentially be a bit more resource-intensive."
+echo -e "${GREEN}[+]${NOCOLOR} There will also be a few 'errors', but those are expected."
+sleep 2
 sudo make ts-build
 if [ $? -ne 0 ]; then
 	echo ""
@@ -78,10 +81,10 @@ if [ $? -ne 0 ]; then
 fi
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Identifying Shell..."
-if [[ $SHELL == "*/zsh" ]]; then
+if [[ $SHELL == "/usr/bin/zsh" ]]; then
 	echo -e "${GREEN}[+]${NOCOLOR} ZSH Shell identified."
 	shellFile="$HOME/.zshrc"
-elif [[ $SHELL == "*/bash" ]]; then
+elif [[ $SHELL == "/usr/bin/bash" ]]; then
 	echo -e "${GREEN}[+]${NOCOLOR} Bash Shell identified."
 	shellFile="$HOME/.bashrc"
 else
@@ -91,7 +94,7 @@ fi
 echo ""
 echo -e "${GREEN}[+]${NOCOLOR} Adding binary to PATH..."
 sleep 1
-echo 'export PATH=$PATH:/opt/Havoc' >> $shellFile
+export PATH=$PATH:/opt/Havoc >> $shellFile
 source $shellFile
 echo -e "${GREEN}[NOTE]${NOCOLOR} Unfortunately, due to how Havoc searches for files, you will need to be inside the /opt directory when you execute it. However, you now no longer have to use the annoying './' when invoking."
 sleep 2
