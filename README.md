@@ -27,5 +27,6 @@ Pull the .sh file and do the following:
 
 ## Supported (Tested on) Operating Systems
 - Kali Linux
+- Debian 12
 
 
