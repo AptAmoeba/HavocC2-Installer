@@ -24,13 +24,13 @@ if [ "$EUID" -eq 0 ]; then
 fi
 #--- Root check
 echo ""
-echo -e "${GREEN}[+]${NOCOLOR} Preliminary system Update/Upgrade."
+echo -e "${GREEN}[+]${NOCOLOR} Preliminary system Update."
 sleep 2
-sudo apt update && sudo apt upgrade -y
+sudo apt update
 # Validate install success:
 if [ $? -ne 0 ]; then
 	echo ""
-	echo -e "${RED}[-]${NOCOLOR} Update/Upgrade failed. Check apt error output."
+	echo -e "${RED}[-]${NOCOLOR} Update failed. Check apt error output."
 	exit 1
 fi
 echo ""
